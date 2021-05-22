@@ -1,5 +1,63 @@
-@()
+@import model.Produkt
+@(produkte: Seq[Produkt])
+<!DOCTYPE html>
+<html>
 
-@main("10Days") {
-  <h1 style="color: chartreuse; text-align: center">10Days</h1>
-}
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>burakgrossanzeigen</title>
+
+      <!-- imported Stylesheets -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+      <!-- Our Custom CSS -->
+    <link rel="stylesheet" type="text/css" href='/assets/stylesheets/main.css' />
+
+      <!-- Font Awesome JS -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <!-- Our own JS -->
+    <script src="/assets/javascripts/main.js" type="text/javascript"></script>
+     <!--favicon -->
+
+  </head>
+
+  <body>
+    <h1><span class="badge badge-secondary">Burak-Grossanzeigen</span></h1>
+    <hr id="horizontalLine">
+
+      <!-- Side navigation -->
+    <div class="sidenav">
+      <a href="#">Home <i class="large material-icons">home</i></a>
+      <a href="#">Search <i class="large material-icons">search</i></a>
+      <a href="#">Add <i class="large material-icons">add_box</i></a>
+      <a href="#">Kontakt <i class="large material-icons">contacts</i></a>
+    </div>
+
+      <!-- Page content -->
+    <div class="main">
+      <div id="produkte">
+        <h2>Erstelle ein Produkt</h2>
+
+        <form action="/insert/produkt" method="POST">
+          <input name="name" type="text" placeholder="name"/>
+          <input name="price" type="number" placeholder="price"/>
+          <input type="submit"/>
+        </form>
+
+        <h2>Bisher erstellte Produkte:</h2>
+        <table>
+          <tr><th>Name</th><th>Preis</th></tr>
+          @for(prod <- produkte){
+            <tr><td>@prod.name</td><td>@prod.price</td></tr>
+          }
+        </table>
+      </div>
+    </div>
+
+  </body>
+
+</html>
