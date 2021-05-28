@@ -1,0 +1,61 @@
+@import model.Article
+@(articles: Seq[Article])
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>burakgrossanzeigen</title>
+            <!-- imported Stylesheets -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+            <!-- Our Custom CSS -->
+        <link rel="stylesheet" type="text/css" href='/assets/stylesheets/main.css' />
+
+            <!-- Font Awesome JS -->
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+            <!-- Our own JS -->
+        <script src="/assets/javascripts/main.js" type="text/javascript"></script>
+            <!--favicon -->
+    </head>
+    <body>
+        <h1><span class="badge badge-secondary">Search Articles</span></h1>
+        <hr id="horizontalLine">
+
+            <!-- Side navigation -->
+        <div class="sidenav">
+            <a href="home">Home <i class="large material-icons">home</i></a>
+            <a href="search">Search <i class="large material-icons">search</i></a>
+            <a href="add">Add <i class="large material-icons">add_box</i></a>
+            <a href="#">Contact <i class="large material-icons">contacts</i></a>
+        </div>
+
+            <!-- Page content -->
+        <div class="main">
+
+            <div class="container">
+                <label for="tableHeadline" class="form-label add-label">Articles</label>
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @for(art <- articles){
+                        <tr class="table-primary">
+                            <td>@art.name</td>
+                            <td>@art.price</td>
+                            <td>@art.description</td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+
+
+        </div>
+    </body>
+</html>
