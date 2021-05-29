@@ -238,13 +238,13 @@ thead{
 }
 #yeezy{
     position: absolute;
-    top: 20%;
-    left: 60%;
+    top: 100px;
+    left: 340px;
 }
 #nike{
     position: absolute;
-    top: 20%;
-    left: 30%;
+    top: 100px;
+    left: 800px;
 }
 #contactDiv{
     background-image: url(../images/contact.png) !important;
