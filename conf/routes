@@ -31,3 +31,5 @@ POST        /insert/article        controllers.HomeController.insertArticle
 POST        /insert/user           controllers.HomeController.insertUser
 
 POST        /check/login           controllers.HomeController.checkLogin
+
+POST        /search/byname         controllers.HomeController.searchByName

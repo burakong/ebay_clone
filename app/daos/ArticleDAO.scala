@@ -18,6 +18,9 @@ class ArticleDAO  @Inject()(protected val dbConfigProvider: DatabaseConfigProvid
   def insert(article: Article): Future[Unit] = {
     db.run(Articles.insertOrUpdate(article)).map { _ => () }
   }
+  def searchByName(name: String): Future[Seq[Article]] = db.run(
+    Articles.filter(_.name === name)
+      .result)
 
   private class ArticleTable(tag: Tag) extends Table[Article](tag, "article") {
 

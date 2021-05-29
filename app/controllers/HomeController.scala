@@ -80,6 +80,11 @@ class HomeController @Inject() (userDAO: UserDAO,produktDao: ProduktDAO,articleD
   def search() = Action.async {
     articleDAO.all().map { case (articles) => Ok(views.html.search(articles)) }
   }
+  def searchByName = Action.async { implicit request =>
+    val article: Article = articleForm.bindFromRequest.get
+    articleDAO.searchByName(article.name).map { case (articles) => Ok(views.html.search(articles)) }
+  }
+
 
   def contact() = Action.async {
     articleDAO.all().map { case (articles) => Ok(views.html.contact(articles)) }
