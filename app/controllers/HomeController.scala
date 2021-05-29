@@ -19,6 +19,10 @@ class HomeController @Inject() (userDAO: UserDAO,produktDao: ProduktDAO,articleD
     userDAO.all().map { case (users) => Ok(views.html.index(users)) }
     //Ok(views.html.index(produktDao.all()))
   }
+  def home() = Action.async {
+    userDAO.all().map { case (users) => Ok(views.html.home(users)) }
+    //Ok(views.html.index(produktDao.all()))
+  }
 
   def env() = Action { implicit request: Request[AnyContent] =>
     Ok("Nothing to see here")
@@ -42,6 +46,26 @@ class HomeController @Inject() (userDAO: UserDAO,produktDao: ProduktDAO,articleD
   def insertUser = Action.async { implicit request =>
     val user: User = userForm.bindFromRequest.get
     userDAO.insert(user).map(_ => Redirect(routes.HomeController.index))
+    userDAO.all().map { case (users) =>
+      var isValid = false
+      users.map{ u =>
+        if(user.username.equals(u.username)) isValid = true
+      }
+      if(isValid) NotFound
+      else Redirect(routes.HomeController.index())
+    }
+  }
+
+  def checkLogin = Action.async { implicit  request =>
+    val user: User = userForm.bindFromRequest.get
+    userDAO.all().map { case (users) =>
+      var isValid = false
+      users.map{ u =>
+      if(user.username.equals(u.username) && user.password.equals(u.password)) isValid = true
+      }
+      if(isValid) Redirect(routes.HomeController.home)
+      else NotFound
+    }
   }
 
   def signup() = Action.async {
@@ -55,6 +79,10 @@ class HomeController @Inject() (userDAO: UserDAO,produktDao: ProduktDAO,articleD
   }
   def search() = Action.async {
     articleDAO.all().map { case (articles) => Ok(views.html.search(articles)) }
+  }
+
+  def contact() = Action.async {
+    articleDAO.all().map { case (articles) => Ok(views.html.contact(articles)) }
   }
 
   val articleForm = Form(

@@ -1,5 +1,5 @@
-@import model.User
-@(users: Seq[User])
+@import model.Article
+@(art: Seq[Article])
 <!DOCTYPE html>
 <html>
 
@@ -25,8 +25,8 @@
 
     </head>
 
-    <body>
-        <h1><span class="badge badge-secondary">Burak-Grossanzeigen</span></h1>
+    <body id="contactDiv">
+        <h1><span class="badge badge-secondary">Contact</span></h1>
         <hr id="horizontalLine">
             <!-- Side navigation -->
         <div class="sidenav">
@@ -38,18 +38,6 @@
 
             <!-- Page content -->
         <div class="main">
-            <div id="yeezy" class="card">
-                <img src="/assets/images/yeezy.jpg" alt="Adidas" style="width:100%">
-                <h1>Yeezy Boost</h1>
-                <p class="price">199€</p>
-                <p>Original Adidas Yeezy 350 Boost V2 Black Fu9161 YEZZY</p>
-            </div>
-            <div id="nike" class="card">
-                <img src="/assets/images/airmax.jpg" alt="Nike" style="width:100%">
-                <h1>Airmax</h1>
-                <p class="price">189€</p>
-                <p>Nike Air Max 720 CJ0585-003 black&white</p>
-            </div>
 
         </div>
 

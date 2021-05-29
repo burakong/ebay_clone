@@ -6,7 +6,7 @@
 # An example controller showing a sample home page
 GET         /                      controllers.HomeController.index()
 
-GET         /home                  controllers.HomeController.index()
+GET         /home                  controllers.HomeController.home()
 
 # Map static resources from the /public folder to the /assets URL path
 GET         /assets/*file          controllers.Assets.versioned(path="/public", file: Asset)
@@ -22,8 +22,12 @@ GET         /signup                controllers.HomeController.signup()
 
 GET         /search                controllers.HomeController.search()
 
+GET         /contact               controllers.HomeController.contact()
+
 POST        /insert/produkt        controllers.HomeController.insertProdukt
 
 POST        /insert/article        controllers.HomeController.insertArticle
 
 POST        /insert/user           controllers.HomeController.insertUser
+
+POST        /check/login           controllers.HomeController.checkLogin
