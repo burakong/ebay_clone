@@ -6,7 +6,7 @@ import model.{Article, Produkt, User}
 import javax.inject._
 import play.api._
 import play.api.data.Form
-import play.api.data.Forms.{mapping, number, text}
+import play.api.data.Forms.{mapping, number, text, tuple}
 import play.api.mvc._
 
 import scala.concurrent.ExecutionContext
@@ -98,8 +98,11 @@ class HomeController @Inject() (userDAO: UserDAO,produktDao: ProduktDAO,articleD
     val article : Article =articleForm.bindFromRequest.get
     articleDAO.insert(article).map(_ => Redirect(routes.HomeController.add))
   }
+  val nameForm = Form[(String)](
+      "name" -> text
+  )
   def searchByName = Action.async { implicit request =>
-    val article: Article = articleForm.bindFromRequest.get
-    articleDAO.searchByName(article.name).map { case (articles) => Ok(views.html.search(articles)) }
+    val articleName= nameForm.bindFromRequest.get
+    articleDAO.searchByName(articleName).map { case (articles) => Ok(views.html.search(articles)) }
   }
 }
