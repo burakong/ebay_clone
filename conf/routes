@@ -32,4 +32,4 @@ POST        /insert/user           controllers.HomeController.insertUser
 
 POST        /check/login           controllers.HomeController.checkLogin
 
-POST        /search/byname         controllers.HomeController.searchByName
+POST        /byname         controllers.HomeController.searchByName
